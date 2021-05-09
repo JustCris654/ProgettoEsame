@@ -1,3 +1,5 @@
+<?php
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-<a href="login/login.html">Login</a>
+<h1>Hello</h1>
 </body>
 </html>
