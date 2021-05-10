@@ -1,6 +1,6 @@
 # ProgettoEsame
 - [x] Database
-- [ ] Login
+- [x] Login
 - [ ] Registrazione
     - [ ] Messaggio errore utente gia esistente
 - [ ] Login admin
