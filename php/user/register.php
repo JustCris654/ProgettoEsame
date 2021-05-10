@@ -15,22 +15,22 @@ if (isset($_REQUEST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password_1'];
     $psw_hash = password_hash($password, PASSWORD_DEFAULT);
-    echo "<p>nome: $name</p>";
-    echo "<p>cognome: $surname</p>";
-    echo "<p>email: $email</p>";
-    echo "<p>password: $password</p>";
+//    echo "<p>nome: $name</p>";
+//    echo "<p>cognome: $surname</p>";
+//    echo "<p>email: $email</p>";
+//    echo "<p>password: $password</p>";
 
 //    $stmt->execute();
 
     if ($stmt->execute()) {
-        $userid = $stmt->insert_id;
-        echo "Email: $email, password: $password";
+//        echo "Email: $email, password: $password";
+        header("Location: ../app/homepage.php");
     } else {
         echo "Error: ".$stmt->error;
+
+        header("Location: ../generic_error.html");
     }
 } else {
-    echo "caca";
+    header("Location: register.html");
+    exit();
 }
-
-//header("Location: user.html");
-//exit();

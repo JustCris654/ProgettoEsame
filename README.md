@@ -2,6 +2,7 @@
 - [x] Database
 - [ ] Login
 - [ ] Registrazione
+    - [ ] Messaggio errore utente gia esistente
 - [ ] Login admin
 - [ ] Registrazione admin
 
