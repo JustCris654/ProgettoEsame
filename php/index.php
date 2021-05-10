@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-<a href="login/login.html">Login</a>
+<a href="user/login.html">Login</a>
 </body>
 </html>

@@ -13,12 +13,12 @@ if (isset($_REQUEST['submit'])) {
 
     $stmt->execute();
     $result = $stmt->get_result();
-    var_dump($result);
+//    var_dump($result);
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $conn->close();
         $psw_hashed = $row['password'];
-        echo "$psw_hashed";
+//        echo "$psw_hashed";
         if (password_verify($password, $psw_hashed)) {
             $_SESSION['name'] = $row['nome'];
             $_SESSION['surname'] = $row['cognome'];
@@ -28,5 +28,6 @@ if (isset($_REQUEST['submit'])) {
         }
     }
 }
-header("Location: login.html");
+header("Location: ../generic_error.html");
 exit();
+
