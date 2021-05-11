@@ -14,7 +14,7 @@
 <body class="text-center">
 <main class="form-signin">
     <form action="login.php" method="POST">
-        <img class="mb-4 login-img" id="img" src="user-solid.svg" alt=""/>
+        <img class="mb-4 login-img" id="img" src="../svg/user-solid.svg" alt=""/>
 
         <div class="form-floating">
             <input
@@ -23,6 +23,7 @@
                     id="email"
                     placeholder="name@example.com"
                     name="email"
+                    required
             />
             <label for="email">Email address</label>
         </div>
@@ -33,6 +34,7 @@
                     id="password"
                     placeholder="Password"
                     name="password"
+                    required
             />
             <label for="password">Password</label>
         </div>
@@ -42,6 +44,7 @@
 <!--                <input type="checkbox" value="remember-me"/> Remember me-->
 <!--            </label>-->
 <!--        </div>-->
+        <p class="mt-5 mb-3 text-black-50">Non sei ancora registrato? <a href="register.html">registrati</a></p>
         <input type="submit" class="w-100 btn btn-lg btn-primary" id="submit" name="submit" value="Accedi" >
         <p class="mt-5 mb-3 text-muted">&copy; 2021-today</p>
     </form>

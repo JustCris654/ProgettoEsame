@@ -22,7 +22,6 @@ if (isset($_REQUEST['submit'])) {
         if (password_verify($password, $psw_hashed)) {
             $_SESSION['name'] = $row['nome'];
             $_SESSION['surname'] = $row['cognome'];
-
             header("Location: ../app/homepage.php");
             exit();
         }
