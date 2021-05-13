@@ -27,7 +27,7 @@ if (isset($_REQUEST['submit'])) {
         $_SESSION['name'] = $name;
         $_SESSION['surname'] = $surname;
         $_SESSION['email'] = $email;
-        header("Location: ../app/homepage.docs");
+        header("Location: ../app/homepage.php");
     } else {
         echo "Error: ".$stmt->error;
 

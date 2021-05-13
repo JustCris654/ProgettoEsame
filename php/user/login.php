@@ -23,7 +23,7 @@ if (isset($_REQUEST['submit'])) {
             $_SESSION['name'] = $row['nome'];
             $_SESSION['surname'] = $row['cognome'];
             $_SESSION['email'] = $email;
-            header("Location: ../app/homepage.docs");
+            header("Location: ../app/homepage.php");
             exit();
         }
     }

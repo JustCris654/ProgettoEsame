@@ -50,21 +50,11 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                 </li>
             </ul>
 
-            <!--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
-            <!--                <input-->
-            <!--                        type="search"-->
-            <!--                        class="form-control form-control-dark"-->
-            <!--                        placeholder="Search..."-->
-            <!--                        aria-label="Search"-->
-            <!--                />-->
-            <!--            </form>-->
-
-
             <?php
             if (isset($_SESSION['name'])) { ?>
 
                 <div class="text-end">
-                    <a href="../user/areapersonale.php" style="text-decoration: none">
+                    <a href="/user/areapersonale.php" style="text-decoration: none">
                         <button type="button" class="btn btn-primary">
                             Area personale <?= $_SESSION['name'] ?> <br>
                         </button>
@@ -75,7 +65,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                 <?php
             } else { ?>
                 <div class="text-end">
-                    <a href="../user/login.html" style="text-decoration: none">
+                    <a href="/user/login.html" style="text-decoration: none">
                         <button
                                 type="button"
                                 class="btn btn-outline-primary me-2"
@@ -83,7 +73,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                             Login
                         </button>
                     </a>
-                    <a href="../user/register.html" style="text-decoration: none">
+                    <a href="/user/register.html" style="text-decoration: none">
                         <button type="button" class="btn btn-primary">
                             Sign-up
                         </button>
@@ -95,6 +85,9 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     </div>
 </header>
 
+<div>
+    <h1>Caca</h1>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
