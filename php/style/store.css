@@ -1,0 +1,7 @@
+.price {
+    pointer-events: none
+}
+
+input[type=text]{
+    text-align: center;
+}

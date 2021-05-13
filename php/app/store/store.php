@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'Product.php';
 $user_auth = "";
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
@@ -14,7 +15,8 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <title>Homepage</title>
+    <link rel="stylesheet" href="../../style/store.css">
+    <title>Hardwareinyou | Store 😎</title>
 </head>
 <body class="text-center">
 <header class="p-3 bg-dark text-white">
@@ -85,10 +87,33 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     </div>
 </header>
 
-<div>
-    <h1>Caca</h1>
+<!-- eseguire una ricerca con ajax -->
+<div class="bg-light form-control">
+    <label for="search">Cerca:</label>
+    <input type="text" class="form-control" name="search" id="search" onkeyup="search_articles(this.value)">
 </div>
 
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="articles-container">
+
+            <!--            cards              -->
+                        <?php
+                        $cards = array();
+                        for ($i=0; $i<3;$i++){
+                            array_push($cards,
+                                new Product("RTX 207$i", 'caca merda', 'Schede Video', 'NVIDIA', 400.0+$i));
+                        }
+
+                        foreach ($cards as $card) {
+                            echo $card->getCard();
+                        }
+                        ?>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
