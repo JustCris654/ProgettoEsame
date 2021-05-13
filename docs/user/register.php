@@ -24,7 +24,10 @@ if (isset($_REQUEST['submit'])) {
 
     if ($stmt->execute()) {
 //        echo "Email: $email, password: $password";
-        header("Location: ../app/homepage.php");
+        $_SESSION['name'] = $name;
+        $_SESSION['surname'] = $surname;
+        $_SESSION['email'] = $email;
+        header("Location: ../app/homepage.docs");
     } else {
         echo "Error: ".$stmt->error;
 

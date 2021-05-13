@@ -1,8 +1,8 @@
 <?php
 session_start();
-$user_auth="";
-if(isset($_SESSION['name']) and isset($_SESSION['surname'])){
-    $user_auth = $_SESSION['name']." ".$_SESSION['surname'];
+$user_auth = "";
+if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
+    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 }
 ?>
 <!doctype html>
@@ -42,11 +42,7 @@ if(isset($_SESSION['name']) and isset($_SESSION['surname'])){
                     >Vieni a trovarci</a
                     >
                 </li>
-                <li>
-                    <a href="#" class="nav-link px-2 text-white"
-                    ><?=$user_auth!=""?$user_auth:"Area personale"?></a
-                    >
-                </li>
+
                 <li>
                     <a href="#" class="nav-link px-2 text-white"
                     >About</a
@@ -54,30 +50,47 @@ if(isset($_SESSION['name']) and isset($_SESSION['surname'])){
                 </li>
             </ul>
 
-<!--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
-<!--                <input-->
-<!--                        type="search"-->
-<!--                        class="form-control form-control-dark"-->
-<!--                        placeholder="Search..."-->
-<!--                        aria-label="Search"-->
-<!--                />-->
-<!--            </form>-->
+            <!--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
+            <!--                <input-->
+            <!--                        type="search"-->
+            <!--                        class="form-control form-control-dark"-->
+            <!--                        placeholder="Search..."-->
+            <!--                        aria-label="Search"-->
+            <!--                />-->
+            <!--            </form>-->
 
-            <div class="text-end">
-                <a href="../user/login.html" style="text-decoration: none">
-                    <button
-                            type="button"
-                            class="btn btn-outline-primary me-2"
-                    >
-                        Login
-                    </button>
-                </a>
-                <a href="../user/register.html" style="text-decoration: none">
-                    <button type="button" class="btn btn-primary">
-                        Sign-up
-                    </button>
-                </a>
-            </div>
+
+            <?php
+            if (isset($_SESSION['name'])) { ?>
+
+                <div class="text-end">
+                    <a href="../user/areapersonale.php" style="text-decoration: none">
+                        <button type="button" class="btn btn-primary">
+                            Area personale <?= $_SESSION['name'] ?> <br>
+                        </button>
+                    </a>
+                </div>
+
+
+                <?php
+            } else { ?>
+                <div class="text-end">
+                    <a href="../user/login.html" style="text-decoration: none">
+                        <button
+                                type="button"
+                                class="btn btn-outline-primary me-2"
+                        >
+                            Login
+                        </button>
+                    </a>
+                    <a href="../user/register.html" style="text-decoration: none">
+                        <button type="button" class="btn btn-primary">
+                            Sign-up
+                        </button>
+                    </a>
+                </div> <?php
+            }
+            ?>
         </div>
     </div>
 </header>
