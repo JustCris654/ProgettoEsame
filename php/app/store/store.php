@@ -16,6 +16,8 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/store.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <title>Hardwareinyou | Store 😎</title>
 </head>
 <body class="text-center">
@@ -100,7 +102,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
             <!--            cards              -->
             <?php
             $cards = array();
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < 2; $i++) {
                 array_push($cards,
                     new Product("RTX 207$i", 'manto', 'Schede Video', 'NVIDIA', 400.0 + $i));
             }
