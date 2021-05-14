@@ -4,14 +4,15 @@ function search_articles(str) {
     } else {
         let request = new XMLHttpRequest();
 
+        //ricevo la risposta dal server php
         request.onreadystatechange = function (){
             if(request.readyState === 4 && request.status === 200){
                 let response = request.response;
-
+                console.log(JSON.parse(response))
             }
         }
 
-        //invio la richiesta alla pagin php
+        //invio la richiesta al server php
         str = str.toLowerCase();
         request.open('GET', 'search.php?'+str, true);
         request.send();

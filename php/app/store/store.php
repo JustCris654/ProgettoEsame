@@ -98,17 +98,18 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="articles-container">
 
             <!--            cards              -->
-                        <?php
-                        $cards = array();
-                        for ($i=0; $i<3;$i++){
-                            array_push($cards,
-                                new Product("RTX 207$i", 'caca merda', 'Schede Video', 'NVIDIA', 400.0+$i));
-                        }
+            <?php
+            $cards = array();
+            for ($i = 0; $i < 3; $i++) {
+                array_push($cards,
+                    new Product("RTX 207$i", 'manto', 'Schede Video', 'NVIDIA', 400.0 + $i));
+            }
 
-                        foreach ($cards as $card) {
-                            echo $card->getCard();
-                        }
-                        ?>
+            foreach ($cards as $card) {
+                echo $card->getCard();
+            }
+
+            ?>
         </div>
     </div>
 </div>
