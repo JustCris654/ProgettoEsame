@@ -35,7 +35,7 @@ class Product implements JsonSerializable
     private string $category;
     private string $brand;
     private float $price;
-    private string $articleCard;
+//    private string $articleCard;
 
     /**
      * Product constructor.
@@ -52,7 +52,7 @@ class Product implements JsonSerializable
         $this->category = $category;
         $this->brand = $brand;
         $this->price = $price;
-        $this->articleCard = $this->getCard();
+//        $this->articleCard = $this->getCard();
     }
 
 
