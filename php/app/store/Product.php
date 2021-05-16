@@ -35,6 +35,7 @@ class Product implements JsonSerializable
     private string $category;
     private string $brand;
     private float $price;
+    private string $linkImage;
 //    private string $articleCard;
 
     /**
@@ -44,62 +45,61 @@ class Product implements JsonSerializable
      * @param string $category
      * @param string $brand
      * @param float $price
+     * @param string $linkImage
      */
-    public function __construct(string $product_name, string $description, string $category, string $brand, float $price)
+    public function __construct(string $product_name, string $description, string $category, string $brand, float $price, string $linkImage)
     {
         $this->product_name = $product_name;
         $this->description = $description;
         $this->category = $category;
         $this->brand = $brand;
         $this->price = $price;
+        $this->linkImage=$linkImage;
 //        $this->articleCard = $this->getCard();
-    }
-
-
-    public function getCard(): string
-    {
-        $card = "<div class='col'>
-                    <div class='card shadow-sm'>
-                        <svg class='bd-placeholder-img card-img-top' width='100%' height='225'
-                             xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
-                             preserveAspectRatio='xMidYMid slice' focusable='false'><title> $this->product_name </title>
-                            <image href='https://images-na.ssl-images-amazon.com/images/I/51F79GDGXGL._AC_SL1000_.jpg'
-                                   height='100%' width='100%'></image>
-                        </svg>
-
-                        <div class='card-body'>
-                            <p class='card-text'> $this->product_name </p>
-                            <div class='d-flex justify-content-between align-items-center'>
-                                <div class='btn-group'>
-                                    <button type='button' class='btn btn-sm btn-outline-secondary'>Dettagli</button>
-                                </div>
-                                <button type='button' class='price btn btn-warning'>
-                                $this->price €
-                                </button>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>";
-        return $card;
     }
 
     /**
      * @return string
      */
-    public function getArticleCard(): string
-    {
-        return $this->articleCard;
+    public function getLinkImage(): string {
+        return $this->linkImage;
     }
 
     /**
-     * @param string $articleCard
+     * @param string $linkImage
      */
-    public function setArticleCard(string $articleCard): void
-    {
-        $this->articleCard = $articleCard;
+    public function setLinkImage(string $linkImage): void {
+        $this->linkImage = $linkImage;
     }
 
+
+//    public function getCard(): string
+//    {
+//        $card = "<div class='col'>
+//                    <div class='card shadow-sm'>
+//                        <svg class='bd-placeholder-img card-img-top' width='100%' height='225'
+//                             xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
+//                             preserveAspectRatio='xMidYMid slice' focusable='false'><title> $this->product_name </title>
+//                            <image href='https://images-na.ssl-images-amazon.com/images/I/51F79GDGXGL._AC_SL1000_.jpg'
+//                                   height='100%' width='100%'></image>
+//                        </svg>
+//
+//                        <div class='card-body'>
+//                            <p class='card-text'> $this->product_name </p>
+//                            <div class='d-flex justify-content-between align-items-center'>
+//                                <div class='btn-group'>
+//                                    <button type='button' class='btn btn-sm btn-outline-secondary'>Dettagli</button>
+//                                </div>
+//                                <button type='button' class='price btn btn-warning'>
+//                                $this->price €
+//                                </button>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//                </div>";
+//        return $card;
+//    }
 
 
     /**

@@ -1,10 +1,3 @@
-let articles = [
-    {product_name: 'RTX 3071', price: 400, brand: 'ciao', category: 'ciao2', articleCard: ''},
-    {product_name: 'RTX 3072', price: 401, brand: 'ciao', category: 'ciao2', articleCard: ''},
-    {product_name: 'RTX 3073', price: 402, brand: 'ciao', category: 'ciao2', articleCard: ''},
-];
-
-
 Vue.component('card-article', {
     template: `
       <div class="col">
@@ -12,7 +5,7 @@ Vue.component('card-article', {
         <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
              preserveAspectRatio="xMidYMid slice" focusable="false"><title>{{ prodname }}</title>
-          <image href="https://images-na.ssl-images-amazon.com/images/I/51F79GDGXGL._AC_SL1000_.jpg"
+          <image :href="imglink"
                  height="100%" width="100%"></image>
         </svg>
 
@@ -20,7 +13,7 @@ Vue.component('card-article', {
           <p class="card-text">{{ prodname }}</p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Dettagli</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" @click="showDetails">Dettagli</button>
 
             </div>
             <button type="button" class="price btn btn-warning">
@@ -29,10 +22,36 @@ Vue.component('card-article', {
           </div>
         </div>
       </div>
+
+      <div style="position: fixed; width: 100%; height: 100%; z-index: 100; top: 0; left: 0" v-if="showdetails"
+           @click="handleClick" ref="detailsMask">
+        <div class="details" v-html="prodname"
+             style="background-color: red; margin: 3rem; top: 0; left: 0">
+
+        </div>
+      </div>
+
       </div>`,
+
+    data() {
+        return {
+            showdetails: false
+        }
+    },
     props: {
         prodname: String,
         price: Number,
+        imglink: String
+    },
+    methods: {
+        showDetails() {
+            this.showdetails = true
+        },
+        handleClick(evt) {
+            if (evt.target === this.$refs.detailsMask) {
+                this.showdetails = false;
+            }
+        }
     }
 })
 
@@ -54,13 +73,18 @@ new Vue({
                 'search.php',
                 {
                     success: (data) => {
-                        this.articles = JSON.parse(data);
+                        console.log(data)
+                        if(data !== 'not_found'){
+                            this.articles = JSON.parse(data);
+                        }
+                        // console.log(this.articles)
                     },
                     error: function () {
-                        console.log('error');
+                        //da errore se la ricerca non trova risultati ma
+                        //non e' da tenere conto
                     },
                     method: "POST",
-                    data: this.inputstring
+                    data: {search : this.inputstring}
                 }
             );
         }
@@ -70,6 +94,7 @@ new Vue({
     },
     computed: {
         get_articles() {
+            // console.log(this.articles)
             return this.articles
         }
     },

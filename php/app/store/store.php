@@ -105,6 +105,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                             v-for="item in articles"
                             :prodname="item.product_name"
                             :price="item.price"
+                            :imglink="item.linkImage"
                             :key="item.product_name"
                     >
                     </card-article>
