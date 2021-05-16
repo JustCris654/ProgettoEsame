@@ -1,31 +1,5 @@
 <?php
 
-
-//<!--            card 1              -->
-//            <div class="col">
-//                <div class="card shadow-sm">
-//                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-//                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-//                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>RTX 2070</title>
-//                        <image href="https://images-na.ssl-images-amazon.com/images/I/51F79GDGXGL._AC_SL1000_.jpg"
-//                               height="100%" width="100%"></image>
-//                    </svg>
-//
-//                    <div class="card-body">
-//                        <p class="card-text">Descrizione prodotto 3.</p>
-//                        <div class="d-flex justify-content-between align-items-center">
-//                            <div class="btn-group">
-//                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-//                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-//                            </div>
-//                            <button type="button" class="price btn btn-warning">
-//400 €
-//</button>
-//                        </div>
-//                    </div>
-//                </div>
-//            </div>
-
 class Product implements JsonSerializable
 {
 
