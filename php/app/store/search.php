@@ -9,6 +9,7 @@ if (isset($_POST['search']) && $_POST['search'] != "") {
     $search_string = $_POST['search'];
     $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.Articolo WHERE MATCH(nome, nome_marca, descrizione) AGAINST(? in boolean mode)");
     $stmt->bind_param("s", $search_string);
+//    $search_string.='*';
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
