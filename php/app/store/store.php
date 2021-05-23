@@ -117,7 +117,6 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
 </div>
 
 
-<!--<script src="https://unpkg.com/vue@next"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="app.js"></script>
 

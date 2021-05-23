@@ -27,7 +27,9 @@ if (isset($_REQUEST['submit'])) {
             exit();
         }
     }
+    $conn->close();
 }
+$conn->close();
 header("Location: ../generic_error.html");
 exit();
 

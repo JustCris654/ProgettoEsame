@@ -73,8 +73,8 @@ new Vue({
                 'search.php',
                 {
                     success: (data) => {
-                        console.log(data)
-                        if(data !== 'not_found'){
+                        // console.log(data)
+                        if (data !== 'not_found') {
                             this.articles = JSON.parse(data);
                         }
                         // console.log(this.articles)
@@ -84,7 +84,7 @@ new Vue({
                         //non e' da tenere conto
                     },
                     method: "POST",
-                    data: {search : this.inputstring}
+                    data: {search: this.inputstring}
                 }
             );
         }
