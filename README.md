@@ -1,9 +1,8 @@
 # ProgettoEsame
 - [x] Database
 - [x] Login
-- [ ] Registrazione
-    - [ ] Messaggio errore utente gia esistente
-- [ ] Login admin
+- [x] Registrazione
+- [x] Login admin
 - [ ] Registrazione admin
 
 ```php

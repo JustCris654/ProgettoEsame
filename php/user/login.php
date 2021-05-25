@@ -7,13 +7,16 @@ $conn = connect_db("root", "", "db_catena_negozi_2");
 if (isset($_REQUEST['submit'])) {
 //    echo "1";
     $stmt = null;
+    $userType = "";
     if ($_POST['user_type'] == 'user') {
         //select con prepared statement
         $stmt = $conn->prepare("SELECT nome, cognome, password FROM db_catena_negozi_2.Utente where email=?");
+        $userType = 'user';
     } elseif ($_POST['user_type'] == 'employee' and $_POST['badge'] != '') {
 
         //select con prepared statement
-        $stmt = $conn->prepare("SELECT nome, cognome, password FROM db_catena_negozi_2.Dipendente where email=?");
+        $stmt = $conn->prepare("SELECT nome, cognome, password, ruolo FROM db_catena_negozi_2.Dipendente join db_catena_negozi_2.Ruolo R on R.id = Dipendente.id_ruolo where email=?");
+        $userType = 'employee';
     }
     $stmt->bind_param("s", $email);    //s = string
 
@@ -27,11 +30,15 @@ if (isset($_REQUEST['submit'])) {
         $row = $result->fetch_assoc();
         $psw_hashed = $row['password'];
         if (password_verify($password, $psw_hashed)) {
-            $_SESSION['user_type'] = $_POST['user_type'];
+            if(isset($row['ruolo'])){
+                $_SESSION['role'] = $row['ruolo'];
+            }
+            $_SESSION['user_type'] = $userType;
             $_SESSION['name'] = $row['nome'];
             $_SESSION['surname'] = $row['cognome'];
             $_SESSION['email'] = $email;
-            header("Location: ../app/homepage.php");
+            if($userType == 'user') header("Location: /app/homepage.php");
+            elseif ($userType=='employee') header('Location: /admin/homepage_admin.php');
             exit();
         }
     }
