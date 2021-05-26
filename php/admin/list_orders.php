@@ -106,9 +106,9 @@ $sql = "select O.id,
        A.prezzo,
        O.garanzia,
        O.data
-from db_catena_negozi_2.ordine O
-         join db_catena_negozi_2.articolo A on O.nome_pezzo = A.nome
-         join db_catena_negozi_2.utente U on O.id_utente = U.id";
+from db_catena_negozi_2.Ordine O
+         join db_catena_negozi_2.Articolo A on O.nome_pezzo = A.nome
+         join db_catena_negozi_2.Utente U on O.id_utente = U.id";
 
 $result = $conn->query($sql);
 
