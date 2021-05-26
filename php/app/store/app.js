@@ -27,7 +27,6 @@ Vue.component('card-article', {
            @click="handleClick" ref="detailsMask">
         <div class="details" v-html="prodname"
              style="background-color: red; margin: 3rem; top: 0; left: 0">
-
         </div>
       </div>
 

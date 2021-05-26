@@ -1,11 +1,6 @@
 <?php
 session_start();
-$user_auth = "";
-if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
-    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
-}
 ?>
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,41 +48,52 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
             <?php
             if (isset($_SESSION['name'])) { ?>
 
-                <div class="text-end">
-                    <a href="../user/areapersonale.php" style="text-decoration: none">
-                        <button type="button" class="btn btn-primary">
-                            Area personale <?= $_SESSION['name'] ?> <br>
-                        </button>
-                    </a>
-                </div>
+            <div class="text-end">
+                <a href="/user/areapersonale.php" style="text-decoration: none">
+                    <button type="button" class="btn btn-primary">
+                        Area personale <?= $_SESSION['name'] ?> <br>
+                    </button>
+                </a>
+            </div>
 
 
-                <?php
+            <?php
             } else { ?>
-                <div class="text-end">
-                    <a href="/user/login.html" style="text-decoration: none">
-                        <button
-                                type="button"
-                                class="btn btn-outline-primary me-2"
-                        >
-                            Login
-                        </button>
-                    </a>
-                    <a href="/user/register.html" style="text-decoration: none">
-                        <button type="button" class="btn btn-primary">
-                            Sign-up
-                        </button>
-                    </a>
-                </div> <?php
+            <div class="text-end">
+                <a href="/user/login.html" style="text-decoration: none">
+                    <button
+                            type="button"
+                            class="btn btn-outline-primary me-2"
+                    >
+                        Login
+                    </button>
+                </a>
+                <a href="/user/register.html" style="text-decoration: none">
+                    <button type="button" class="btn btn-primary">
+                        Sign-up
+                    </button>
+                </a>
+            </div> <?php
             }
             ?>
         </div>
     </div>
 </header>
+<p style="margin-top: 80px">
+    Vieni a trovarci in negozio, potrai provare i nostri prodotti e parlare con il nostro staff.
+</p>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+<p>
+    Ci troverai:
+</p>
+<p>
+    * in Via Carmelo 27
+</p>
+<p>
+    * in Via Cicala Lamatta 49
+</p>
+<p>
+    * in Via Scarmuggi 178
+</p>
 </body>
 </html>

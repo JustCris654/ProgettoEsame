@@ -1,10 +1,11 @@
 <?php
 session_start();
-require 'Product.php';
+require '../connection_db.php';
 $user_auth = "";
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 }
+$conn = connect_db('root', '', 'db_catena_negozi_2');
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,10 +16,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../style/store.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <title>Hardwareinyou | Store 😎</title>
+    <title>Homepage</title>
 </head>
 <body class="text-center">
 <header class="p-3 bg-dark text-white">
@@ -32,24 +30,29 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                     class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
                 <li>
-                    <a href="/app/homepage.php" class="nav-link px-2 text-secondary"
+                    <a href="/admin/homepage_admin.php" class="nav-link px-2 text-secondary"
                     >Home</a
                     >
                 </li>
                 <li>
-                    <a href="/app/store/store.php" class="nav-link px-2 text-white"
-                    >Store</a
+                    <a href="/admin/add_order.php" class="nav-link px-2 text-secondary"
+                    >Aggiungi ordine</a
                     >
                 </li>
                 <li>
-                    <a href="/app/visit_us.php" class="nav-link px-2 text-white"
-                    >Vieni a trovarci</a
+                    <a href="/app/store/store.php" class="nav-link px-2 text-white"
+                    >Vedi articoli presenti</a
+                    >
+                </li>
+                <li>
+                    <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                    >Vedi articoli presenti in lista</a
                     >
                 </li>
 
                 <li>
-                    <a href="/app/about_us.php" class="nav-link px-2 text-white"
-                    >About</a
+                    <a href="/admin/register_employee.php" class="nav-link px-2 text-white"
+                    >Registra Dipendente</a
                     >
                 </li>
             </ul>
@@ -58,7 +61,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
             if (isset($_SESSION['name'])) { ?>
 
                 <div class="text-end">
-                    <a href="/user/areapersonale.php" style="text-decoration: none">
+                    <a href="../user/areapersonale.php" style="text-decoration: none">
                         <button type="button" class="btn btn-primary">
                             Area personale <?= $_SESSION['name'] ?> <br>
                         </button>
@@ -89,39 +92,41 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     </div>
 </header>
 
-<div id="app">
-    <div>
-        <div class="bg-light form-control">
-            <label for="search">Cerca:</label>
-            <input type="text" class="form-control" name="search" id="search" v-model="inputstring"
-                   @input="search_articles">
-        </div>
+<?php
+$sql = "SELECT U.id, U.email, A.nome, A.prezzo, A.categoria, O.data, O.garanzia
+FROM db_catena_negozi_2.Ordine O
+         join db_catena_negozi_2.Articolo A on nome_pezzo = A.nome
+         join db_catena_negozi_2.Utente U on O.id_utente = U.id";
+$result = $conn->query($sql);
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+if ($result->num_rows > 0) {
+// output data of each row
+?>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nome pezzo</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Data</th>
+        <th scope="col">Garanzia</th>
+    </tr>
+    </thead>
+<!--    finisci di fare la tabella-->
+    <?php
+    while ($row = $result->fetch_assoc()) {
 
-                    <card-article
-                            v-for="item in articles"
-                            :prodname="item.product_name"
-                            :price="item.price"
-                            :imglink="item.linkImage"
-                            :key="item.product_name"
-                    >
-                    </card-article>
+    }
+    } else {
+        echo "0 results";
+    }
+    $conn->close();
+    ?>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script src="app.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            crossorigin="anonymous"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@
                     type="email"
                     class="form-control"
                     id="email"
-                    placeholder="name@example.com"
+                    placeholder="Email address"
                     name="email"
                     required
             />
@@ -39,15 +39,50 @@
             <label for="password">Password</label>
         </div>
 
-<!--        <div class="checkbox mb-3">-->
-<!--            <label>-->
-<!--                <input type="checkbox" value="remember-me"/> Remember me-->
-<!--            </label>-->
+        <div class="badge-div form-floating" id="badge-div">
+
+
+        </div>
+
+<!--        &lt;!&ndash;    test badge    &ndash;&gt;-->
+<!--        <div class="form-floating">-->
+<!--            <input-->
+<!--                    type="text"-->
+<!--                    class="form-control"-->
+<!--                    id="badge"-->
+<!--                    placeholder="Badge"-->
+<!--                    name="badge"-->
+<!--            />-->
+<!--            <label for="badge">Badge</label>-->
 <!--        </div>-->
+
+
+        <label for="user_type">Come vuoi loggarti?</label>
+        <select class="form-select form-select-sm" name="user_type" id="user_type" aria-label=".form-select-sm example"
+                onchange="onSelectChange(this.value)">
+            <option value="user" selected>Utente</option>
+            <option value="employee">Dipendente</option>
+        </select>
+
+
+        <!--        <div class="checkbox mb-3">-->
+        <!--            <label>-->
+        <!--                <input type="checkbox" value="remember-me"/> Remember me-->
+        <!--            </label>-->
+        <!--        </div>-->
         <p class="mt-5 mb-3 text-black-50">Non sei ancora registrato? <a href="register.html">registrati</a></p>
-        <input type="submit" class="w-100 btn btn-lg btn-primary" id="submit" name="submit" value="Accedi" >
+        <input type="submit" class="w-100 btn btn-lg btn-primary" id="submit" name="submit" value="Accedi">
         <p class="mt-5 mb-3 text-muted">&copy; 2021-today</p>
     </form>
 </main>
+<script>
+    let params = new URLSearchParams(location.search);
+    let msg = params.get('msg');
+    if (msg === 'error') {
+        alert('Nome utente o password errati');
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

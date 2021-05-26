@@ -10,3 +10,57 @@ function form_validate() {
     }
 }
 
+function onSelectChange(value) {
+    // console.log(value);
+    const div = $('div.badge-div');
+    div.empty();
+    if (value === 'employee') {
+
+        let template = `  
+            <div class="form-floating">
+                <input
+                        type="text"
+                        class="form-control"
+                        id="badge"
+                        placeholder="Badge"
+                        name="badge"
+                        required
+                />
+                <label for="badge">Badge</label>
+            </div>`;
+        div.append(template);
+    } else {
+        div.empty();
+    }
+}
+
+$(document).ready(function () {
+    $("div.badge-div select").val("user").change();
+});
+
+// Vue.component('badge', {
+//         template: `
+//           <div class="form-floating">
+//           <input
+//               type="password"
+//               class="form-control"
+//               id="password"
+//               placeholder="Password"
+//               name="password"
+//               required
+//           />
+//           <label for="password">Password</label>
+//           </div>`,
+//         data() {
+//             return {
+//                 showdetails: false
+//             }
+//         },
+//     }
+// )
+//
+// new Vue({
+//     el: '#badge-div',
+//
+// })
+

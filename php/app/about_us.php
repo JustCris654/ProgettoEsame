@@ -1,12 +1,6 @@
 <?php
 session_start();
-require 'Product.php';
-$user_auth = "";
-if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
-    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
-}
 ?>
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,10 +9,7 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../style/store.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <title>Hardwareinyou | Store 😎</title>
+    <title>Homepage</title>
 </head>
 <body class="text-center">
 <header class="p-3 bg-dark text-white">
@@ -88,40 +79,13 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
         </div>
     </div>
 </header>
-
-<div id="app">
-    <div>
-        <div class="bg-light form-control">
-            <label for="search">Cerca:</label>
-            <input type="text" class="form-control" name="search" id="search" v-model="inputstring"
-                   @input="search_articles">
-        </div>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                    <card-article
-                            v-for="item in articles"
-                            :prodname="item.product_name"
-                            :price="item.price"
-                            :imglink="item.linkImage"
-                            :key="item.product_name"
-                    >
-                    </card-article>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script src="app.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+<p style="width: 50%; margin: auto; margin-top: 80px">
+    Siamo una piccola catena di negozi, il nostro servizio e' create attorno l'utente.
+    Potrai provare i prodotti nei nostri negozi
+    prima di acquistarli e parlare con il nostro staff per consigli su cosa acquistare.
+    Inoltre noi ci teniamo alla tua privacy, i dati del tuo account, gli acquisti che fai e le ricerche nel nostro sito sono completamente
+    anonime, se ti chiederemo di compilare delle carte per un acquisto stai pur tranquillo, quei dati dopo i due anni di garanzia
+    si cancelleranno in automatico e non ne rimmarra' piu' traccia.
+</p>
 </body>
 </html>
