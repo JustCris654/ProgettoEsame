@@ -4,6 +4,10 @@ $user_auth = "";
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 }
+
+if($_SESSION['user_type'] != 'employee'){
+    header('Location: /app/homepage.php');
+}
 ?>
 <!doctype html>
 <html lang="en">

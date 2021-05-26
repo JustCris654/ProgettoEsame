@@ -21,6 +21,10 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <title>Hardwareinyou | Store 😎</title>
 </head>
 <body class="text-center">
+<?php
+
+function headerUser () {
+?>
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div
@@ -54,74 +58,133 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                 </li>
             </ul>
 
+
             <?php
-            if (isset($_SESSION['name'])) { ?>
-
-                <div class="text-end">
-                    <a href="/user/areapersonale.php" style="text-decoration: none">
-                        <button type="button" class="btn btn-primary">
-                            Area personale <?= $_SESSION['name'] ?> <br>
-                        </button>
-                    </a>
-                </div>
-
-
-                <?php
-            } else { ?>
-                <div class="text-end">
-                    <a href="/user/login.html" style="text-decoration: none">
-                        <button
-                                type="button"
-                                class="btn btn-outline-primary me-2"
-                        >
-                            Login
-                        </button>
-                    </a>
-                    <a href="/user/register.html" style="text-decoration: none">
-                        <button type="button" class="btn btn-primary">
-                            Sign-up
-                        </button>
-                    </a>
-                </div> <?php
             }
+
+            function headerAdmin(){
             ?>
-        </div>
-    </div>
-</header>
-
-<div id="app">
-    <div>
-        <div class="bg-light form-control">
-            <label for="search">Cerca:</label>
-            <input type="text" class="form-control" name="search" id="search" v-model="inputstring"
-                   @input="search_articles">
-        </div>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                    <card-article
-                            v-for="item in articles"
-                            :prodname="item.product_name"
-                            :price="item.price"
-                            :imglink="item.linkImage"
-                            :key="item.product_name"
+            <header class="p-3 bg-dark text-white">
+                <div class="container">
+                    <div
+                            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
                     >
-                    </card-article>
 
+
+                        <ul
+                                class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                        >
+                            <li>
+                                <a href="/admin/homepage_admin.php" class="nav-link px-2 text-secondary"
+                                >Home</a
+                                >
+                            </li>
+                            <li>
+                                <a href="/admin/add_order.php" class="nav-link px-2 text-secondary"
+                                >Aggiungi ordine</a
+                                >
+                            </li>
+                            <li>
+                                <a href="/app/store/store.php" class="nav-link px-2 text-white"
+                                >Vedi articoli presenti</a
+                                >
+                            </li>
+                            <li>
+                                <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                                >Vedi articoli presenti in lista</a
+                                >
+                            </li>
+
+                            <li>
+                                <a href="/admin/register_employee.php" class="nav-link px-2 text-white"
+                                >Registra Dipendente</a
+                                >
+                            </li>
+                        </ul>
+
+                        <?php
+                        }
+
+
+                        if (isset($_SESSION['user_type'])) {
+                            if ($_SESSION['user_type'] == 'employee') {
+                                headerAdmin();
+                            } else {
+                                headerUser();
+                            }
+                        } else {
+                            headerUser();
+                        }
+                        ?>
+
+                        <?php
+                        if (isset($_SESSION['name'])) { ?>
+
+                            <div class="text-end">
+                                <a href="../user/areapersonale.php" style="text-decoration: none">
+                                    <button type="button" class="btn btn-primary">
+                                        Area personale <?= $_SESSION['name'] ?> <br>
+                                    </button>
+                                </a>
+                            </div>
+
+
+                            <?php
+                        } else { ?>
+                            <div class="text-end">
+                                <a href="/user/login.html" style="text-decoration: none">
+                                    <button
+                                            type="button"
+                                            class="btn btn-outline-primary me-2"
+                                    >
+                                        Login
+                                    </button>
+                                </a>
+                                <a href="/user/register.html" style="text-decoration: none">
+                                    <button type="button" class="btn btn-primary">
+                                        Sign-up
+                                    </button>
+                                </a>
+                            </div> <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </header>
+            <div id="app">
+                <div>
+                    <div class="bg-light form-control">
+                        <label for="search">Cerca:</label>
+                        <input type="text" class="form-control" name="search" id="search"
+                               v-model="inputstring"
+                               @input="search_articles">
+                    </div>
+
+                    <div class="album py-5 bg-light">
+                        <div class="container">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                                <card-article
+                                        v-for="item in articles"
+                                        :prodname="item.product_name"
+                                        :price="item.price"
+                                        :imglink="item.linkImage"
+                                        :key="item.product_name"
+                                >
+                                </card-article>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script src="app.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+            <script src="app.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+                    crossorigin="anonymous"></script>
 </body>
 </html>

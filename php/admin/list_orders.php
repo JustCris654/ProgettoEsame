@@ -5,6 +5,9 @@ $user_auth = "";
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 }
+if($_SESSION['user_type'] != 'employee'){
+    header('Location: /app/homepage.php');
+}
 $conn = connect_db('root', '', 'db_catena_negozi_2');
 ?>
 <!doctype html>
@@ -93,10 +96,20 @@ $conn = connect_db('root', '', 'db_catena_negozi_2');
 </header>
 
 <?php
-$sql = "SELECT U.id, U.email, A.nome, A.prezzo, A.categoria, O.data, O.garanzia
-FROM db_catena_negozi_2.Ordine O
-         join db_catena_negozi_2.Articolo A on nome_pezzo = A.nome
-         join db_catena_negozi_2.Utente U on O.id_utente = U.id";
+$sql = "select O.id,
+       O.id_negozio,
+       O.id_utente,
+       U.email,
+       A.nome,
+       A.nome_marca,
+       A.categoria,
+       A.prezzo,
+       O.garanzia,
+       O.data
+from db_catena_negozi_2.ordine O
+         join db_catena_negozi_2.articolo A on O.nome_pezzo = A.nome
+         join db_catena_negozi_2.utente U on O.id_utente = U.id";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -106,27 +119,43 @@ if ($result->num_rows > 0) {
     <thead>
     <tr>
         <th scope="col">ID</th>
+        <th scope="col">ID Negozio</th>
+        <th scope="col">ID utente</th>
         <th scope="col">Email</th>
-        <th scope="col">Nome pezzo</th>
-        <th scope="col">Prezzo</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Marca</th>
         <th scope="col">Categoria</th>
-        <th scope="col">Data</th>
+        <th scope="col">Prezzo</th>
         <th scope="col">Garanzia</th>
+        <th scope="col">Data</th>
     </tr>
     </thead>
-<!--    finisci di fare la tabella-->
+    <tbody>
+    <!--    finisci di fare la tabella-->
     <?php
     while ($row = $result->fetch_assoc()) {
-
+        ?>
+        <th scope="row"><?= $row['id'] ?></th>
+        <td><?= $row['id_negozio'] ?></td>
+        <td><?= $row['id_utente'] ?></td>
+        <td><?= $row['email'] ?></td>
+        <td><?= $row['nome'] ?></td>
+        <td><?= $row['nome_marca'] ?></td>
+        <td><?= $row['categoria'] ?></td>
+        <td><?= $row['prezzo'] ?></td>
+        <td><?= $row['garanzia']==1?'Si':'No' ?></td>
+        <td><?= $row['data'] ?></td>
+    <?php
     }
     } else {
         echo "0 results";
     }
     $conn->close();
     ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-            crossorigin="anonymous"></script>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
 </body>
 </html>

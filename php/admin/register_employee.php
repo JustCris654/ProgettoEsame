@@ -3,8 +3,11 @@ session_start();
 $user_auth = "";
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
+
 }
-?>
+if ($_SESSION['user_type'] != 'employee') {
+    header('Location: /app/homepage.php');
+} ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,18 +17,19 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/loign_register_style.css">
     <title>Homepage</title>
 </head>
 <body class="text-center">
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
 
 
             <ul
-                class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                    class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
                 <li>
                     <a href="/admin/homepage_admin.php" class="nav-link px-2 text-secondary"
@@ -72,8 +76,8 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
                 <div class="text-end">
                     <a href="/user/login.html" style="text-decoration: none">
                         <button
-                            type="button"
-                            class="btn btn-outline-primary me-2"
+                                type="button"
+                                class="btn btn-outline-primary me-2"
                         >
                             Login
                         </button>
@@ -90,6 +94,75 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     </div>
 </header>
 
+<div class="form">
+    <form action="register.php" method="POST" name="registerForm" onsubmit="return form_validate()">
+
+        <div class="row g-3">
+            <div class="col-12">
+                <img class="mb-12 login-img" id="img" src="../svg/user-solid.svg" alt=""/>
+            </div>
+            <div class="form-floating col-md-6">
+                <input type="text"
+                       class="form-control"
+                       name="name"
+                       id="name"
+                       placeholder="nome"
+                       required>
+                <label for="name">Nome</label>
+            </div>
+            <div class="form-floating col-md-6">
+                <input type="text"
+                       class="form-control"
+                       name="surname"
+                       id="surname"
+                       placeholder="cognome"
+                       required>
+                <label for="surname">Cognome</label>
+            </div>
+            <div class="form-floating col-12">
+                <input type="email"
+                       class="form-control"
+                       name="email"
+                       id="email"
+                       placeholder="name@example.com"
+                       required>
+                <label for="email">Email address</label>
+            </div>
+
+        </div>
+
+
+        <div class="form-floating col-12">
+            <input type="password"
+                   class="form-control"
+                   id="password_1"
+                   name="password_1"
+                   placeholder="password"
+                   required>
+            <label for="password_1">Password</label>
+        </div>
+
+        <div class="form-floating col-12">
+            <input type="password"
+                   class="form-control"
+                   id="password_2"
+                   name="password_2"
+                   placeholder="password"
+                   required>
+            <label for="password_2">Reinserisci password</label>
+        </div>
+        <input type="submit"
+               class="w-100 btn btn-lg btn-primary"
+               id="submit"
+               name="submit"
+               value="Registrati">
+        <div class="form-text col-12">
+            <p class="mt-5 mb-3 text-black-50">Sei già un utente? <a href="login.html">accedi</a></p>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; 2021-today</p>
+    </form>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
