@@ -44,18 +44,6 @@
 
         </div>
 
-<!--        &lt;!&ndash;    test badge    &ndash;&gt;-->
-<!--        <div class="form-floating">-->
-<!--            <input-->
-<!--                    type="text"-->
-<!--                    class="form-control"-->
-<!--                    id="badge"-->
-<!--                    placeholder="Badge"-->
-<!--                    name="badge"-->
-<!--            />-->
-<!--            <label for="badge">Badge</label>-->
-<!--        </div>-->
-
 
         <label for="user_type">Come vuoi loggarti?</label>
         <select class="form-select form-select-sm" name="user_type" id="user_type" aria-label=".form-select-sm example"
@@ -64,18 +52,13 @@
             <option value="employee">Dipendente</option>
         </select>
 
-
-        <!--        <div class="checkbox mb-3">-->
-        <!--            <label>-->
-        <!--                <input type="checkbox" value="remember-me"/> Remember me-->
-        <!--            </label>-->
-        <!--        </div>-->
         <p class="mt-5 mb-3 text-black-50">Non sei ancora registrato? <a href="register.html">registrati</a></p>
         <input type="submit" class="w-100 btn btn-lg btn-primary" id="submit" name="submit" value="Accedi">
         <p class="mt-5 mb-3 text-muted">&copy; 2021-today</p>
     </form>
 </main>
 <script>
+    //prendo i parametri GET dall'url per controllare se c'e' un errore
     let params = new URLSearchParams(location.search);
     let msg = params.get('msg');
     if (msg === 'error') {

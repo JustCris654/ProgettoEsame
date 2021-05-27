@@ -7,7 +7,7 @@ $conn = connect_db('root', '', 'db_catena_negozi_2');
 if (isset($_POST['search']) && $_POST['search'] != "") {
     $cards = array();
     $search_string = $_POST['search'];
-    $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.Articolo WHERE MATCH(nome, nome_marca, descrizione) AGAINST(? in boolean mode)");
+    $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.articolo WHERE MATCH(nome, nome_marca, descrizione) AGAINST(? in boolean mode)");
     $stmt->bind_param("s", $search_string);
     $search_string .= '*';
     $stmt->execute();
@@ -41,7 +41,7 @@ if (isset($_POST['search']) && $_POST['search'] != "") {
 
 
     $cards = array();
-    $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.Articolo");
+    $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.articolo");
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {

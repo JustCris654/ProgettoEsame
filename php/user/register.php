@@ -4,8 +4,8 @@ require '../connection_db.php';
 $conn = connect_db("root", "", "db_catena_negozi_2");
 
 if (isset($_REQUEST['submit'])) {
-    //select con prepared statement
-    $stmt = $conn->prepare("INSERT INTO Utente (nome, cognome, email, password) 
+    //insert con prepared statement
+    $stmt = $conn->prepare("INSERT INTO db_catena_negozi_2.utente (nome, cognome, email, password) 
                                 VALUES (?,?,?,?)");
     $stmt->bind_param("ssss", $name, $surname, $email, $psw_hash);    //s = string
 

@@ -1,4 +1,5 @@
 <?php
+//funzione da usare globalmente per connettersi al database
 function connect_db($user, $psw, $database): mysqli
 {
     $hostname = "127.0.0.1";

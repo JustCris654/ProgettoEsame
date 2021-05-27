@@ -1,10 +1,12 @@
 <?php
 session_start();
 $user_auth = "";
+
 if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
     $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 }
 
+//controllo se ad essere loggato sia l'utente o il dipendente
 if($_SESSION['user_type'] != 'employee'){
     header('Location: /app/homepage.php');
 }
@@ -60,6 +62,7 @@ if($_SESSION['user_type'] != 'employee'){
             </ul>
 
             <?php
+            //se un utente e' loggato mostra il link all'area personale senno due link per registrarsi o loggarsi
             if (isset($_SESSION['name'])) { ?>
 
                 <div class="text-end">

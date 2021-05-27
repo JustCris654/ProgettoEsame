@@ -96,6 +96,7 @@ $conn = connect_db('root', '', 'db_catena_negozi_2');
 </header>
 
 <?php
+//query per ricevere i dati dal database di tutti gli ordini fatti fin'ora
 $sql = "select O.id,
        O.id_negozio,
        O.id_utente,
@@ -106,14 +107,14 @@ $sql = "select O.id,
        A.prezzo,
        O.garanzia,
        O.data
-from db_catena_negozi_2.Ordine O
-         join db_catena_negozi_2.Articolo A on O.nome_pezzo = A.nome
-         join db_catena_negozi_2.Utente U on O.id_utente = U.id";
+from db_catena_negozi_2.ordine O
+         join db_catena_negozi_2.articolo A on O.nome_pezzo = A.nome
+         join db_catena_negozi_2.utente U on O.id_utente = U.id";
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-// output data of each row
+// mostro in formato di tabella i dati
 ?>
 <table class="table">
     <thead>
@@ -131,7 +132,7 @@ if ($result->num_rows > 0) {
     </tr>
     </thead>
     <tbody>
-    <!--    finisci di fare la tabella-->
+
     <?php
     while ($row = $result->fetch_assoc()) {
         ?>
