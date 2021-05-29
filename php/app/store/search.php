@@ -28,18 +28,6 @@ if (isset($_POST['search']) && $_POST['search'] != "") {
         echo 'not_found';
     }
 } else {
-//    $cards = array();
-//    for ($i = 0; $i < 3; $i++) {
-//        array_push($cards,
-//            new Product("RTX 207$i",
-//                'manto',
-//                'Schede Video',
-//                'NVIDIA', 400.0 + $i,
-//                "https://images-na.ssl-images-amazon.com/images/I/51F79GDGXGL._AC_SL1000_.jpg"));
-//    }
-//    echo json_encode($cards);
-
-
     $cards = array();
     $stmt = $conn->prepare("SELECT * FROM db_catena_negozi_2.articolo");
     $stmt->execute();

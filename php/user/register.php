@@ -15,15 +15,8 @@ if (isset($_REQUEST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password_1'];
     $psw_hash = password_hash($password, PASSWORD_DEFAULT);
-//    echo "<p>nome: $name</p>";
-//    echo "<p>cognome: $surname</p>";
-//    echo "<p>email: $email</p>";
-//    echo "<p>password: $password</p>";
-
-//    $stmt->execute();
 
     if ($stmt->execute()) {
-//        echo "Email: $email, password: $password";
         $_SESSION['name'] = $name;
         $_SESSION['surname'] = $surname;
         $_SESSION['email'] = $email;

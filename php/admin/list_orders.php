@@ -97,7 +97,7 @@ $conn = connect_db('root', '', 'db_catena_negozi_2');
 
 <?php
 //query per ricevere i dati dal database di tutti gli ordini fatti fin'ora
-$sql = "select O.id,
+$sql = "SELECT O.id,
        O.id_negozio,
        O.id_utente,
        U.email,
@@ -107,9 +107,9 @@ $sql = "select O.id,
        A.prezzo,
        O.garanzia,
        O.data
-from db_catena_negozi_2.ordine O
-         join db_catena_negozi_2.articolo A on O.nome_pezzo = A.nome
-         join db_catena_negozi_2.utente U on O.id_utente = U.id";
+FROM db_catena_negozi_2.ordine O
+         JOIN db_catena_negozi_2.articolo A ON O.nome_pezzo = A.nome
+         JOIN db_catena_negozi_2.utente U ON O.id_utente = U.id";
 
 $result = $conn->query($sql);
 
