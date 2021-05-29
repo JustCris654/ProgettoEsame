@@ -121,7 +121,7 @@ function headerUser () {
                         if (isset($_SESSION['name'])) { ?>
 
                             <div class="text-end">
-                                <a href="../user/areapersonale.php" style="text-decoration: none">
+                                <a href="../../user/areapersonale.php" style="text-decoration: none">
                                     <button type="button" class="btn btn-primary">
                                         Area personale <?= $_SESSION['name'] ?> <br>
                                     </button>
