@@ -1,10 +1,6 @@
 <?php
 session_start();
 require 'Product.php';
-$user_auth = "";
-if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
-    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +13,6 @@ if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/store.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <title>Hardwareinyou | Store 😎</title>
 </head>
 <body class="text-center">
@@ -121,7 +116,7 @@ function headerUser () {
                         if (isset($_SESSION['name'])) { ?>
 
                             <div class="text-end">
-                                <a href="../user/areapersonale.php" style="text-decoration: none">
+                                <a href="../../user/areapersonale.php" style="text-decoration: none">
                                     <button type="button" class="btn btn-primary">
                                         Area personale <?= $_SESSION['name'] ?> <br>
                                     </button>
@@ -169,6 +164,7 @@ function headerUser () {
                                         :prodname="item.product_name"
                                         :price="item.price"
                                         :imglink="item.linkImage"
+                                        :description="item.description"
                                         :key="item.product_name"
                                 >
                                 </card-article>

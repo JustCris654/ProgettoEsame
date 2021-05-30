@@ -1,4 +1,13 @@
+//per fare la ricerca nella pagine store.php ho usato Vuejs, un framework javascript
+//reattivo, cioe' quando la variabile definita in data cambia il framework aggiorna
+//l'intero componente
+
+
+//creo il componente Vue e gli assegno il nome card-article, nel mio codice html se uso il tag <card-article> </card-article>
+//uso questo componente
 Vue.component('card-article', {
+    //il template definisce come viene renderizzato il componente ed e' composto da codice HTML con l'aggiunta che
+    //posso usare delle variabili al suo interno tramite {{ variable }}
     template: `
       <div class="col">
       <div class="card shadow-sm">
@@ -25,23 +34,33 @@ Vue.component('card-article', {
 
       <div style="position: fixed; width: 100%; height: 100%; z-index: 100; top: 0; left: 0" v-if="showdetails"
            @click="handleClick" ref="detailsMask">
-        <div class="details" v-html="prodname"
-             style="background-color: red; margin: 3rem; top: 0; left: 0">
+        <div class="details"
+             v-html="'<h3>Nome prodotto: '+ prodname+'</h3>'+'<p>'+description+'</p>'+'<p>Costo:'+price+'</p>'"
+             style="background-color: white;   
+             width: 60%; height: 60%;
+             position: absolute; top:0; 
+             bottom: 0; left: 0; right: 0; 
+             margin: auto; border-radius: 25px;
+             border: 5px solid #4381e5;">
         </div>
       </div>
 
       </div>`,
+
 
     data() {
         return {
             showdetails: false
         }
     },
+    //queste variabili le definisco nel'HTML in store.php e vengono usate dal template
     props: {
         prodname: String,
         price: Number,
-        imglink: String
+        imglink: String,
+        description: String
     },
+    //definisco i metodi
     methods: {
         showDetails() {
             this.showdetails = true
@@ -56,7 +75,7 @@ Vue.component('card-article', {
 
 
 new Vue({
-    el: '#app',
+    el: '#app',     //elemento di aggancio
     data() {
         return {
             articles: {},
@@ -67,23 +86,25 @@ new Vue({
         //ajax usando jquery
         //evt = event -> prende la key dall'user input
         search_articles(evt) {
-            //usa post
+            //eseguo una chiamata ajax usando jquery con il metodo post
             $.ajax(
                 'search.php',
                 {
-                    success: (data) => {
+                    success: (data) => {    //quando ricevo risposta e non si e' verificato nessun errore
                         // console.log(data)
                         if (data !== 'not_found') {
-                            this.articles = JSON.parse(data);
+                            this.articles = JSON.parse(data);           //cambio la variabile articles e il componente vue
+                                                                        //grazie alla sua rattivita' si aggiorna mostrando
+                                                                        //le nuove informazioni
                         }
                         // console.log(this.articles)
                     },
-                    error: function () {
+                    error: function () {                                //in caso da errore
                         //da errore se la ricerca non trova risultati ma
                         //non e' da tenere conto
                     },
-                    method: "POST",
-                    data: {search: this.inputstring}
+                    method: "POST",                                     //definisco il metodo POST per ajax
+                    data: {search: this.inputstring}                    //invio l'oggetto tramite post
                 }
             );
         }
