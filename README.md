@@ -1,8 +1,12 @@
 # ProgettoEsame
-- [x] Database
-- [x] Login
-- [x] Registrazione
-- [x] Login admin
-- [ ] Registrazione admin
-- [x] Store con ricerca prodotti
-- [x] Pagine per i dipendenti
+##Utenti:
+- Dipendenti: 
+  * Email: giorgiorossi@hardwareinyout.it
+  * Password: jojo
+- Utenti:
+  * 1
+    * Email: mbrusa@gmail.com
+    * Password: ripa
+  * 2
+    * Email: tonimagi@gmail.com
+    * Password: agi

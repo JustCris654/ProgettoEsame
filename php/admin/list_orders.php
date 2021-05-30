@@ -1,14 +1,10 @@
 <?php
 session_start();
 require '../connection_db.php';
-$user_auth = "";
-if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
-    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
-}
 if($_SESSION['user_type'] != 'employee'){
     header('Location: /app/homepage.php');
 }
-$conn = connect_db('root', '', 'db_catena_negozi_2');
+$conn = connect_db('root', '', 'db_catena_negozi');
 ?>
 <!doctype html>
 <html lang="en">
@@ -102,14 +98,16 @@ $sql = "SELECT O.id,
        O.id_utente,
        U.email,
        A.nome,
-       A.nome_marca,
-       A.categoria,
+       m.nome,
+       c.nome,
        A.prezzo,
        O.garanzia,
        O.data
-FROM db_catena_negozi_2.ordine O
-         JOIN db_catena_negozi_2.articolo A ON O.nome_pezzo = A.nome
-         JOIN db_catena_negozi_2.utente U ON O.id_utente = U.id";
+FROM db_catena_negozi.ordini O
+         JOIN db_catena_negozi.articoli A ON O.nome_pezzo = A.nome
+         JOIN db_catena_negozi.utenti U ON O.id_utente = U.id
+         JOIN db_catena_negozi.marche m on m.id = A.id_marca
+         JOIN db_catena_negozi.categorie c on c.id = A.id_categoria";
 
 $result = $conn->query($sql);
 
@@ -141,7 +139,7 @@ if ($result->num_rows > 0) {
         <td><?= $row['id_utente'] ?></td>
         <td><?= $row['email'] ?></td>
         <td><?= $row['nome'] ?></td>
-        <td><?= $row['nome_marca'] ?></td>
+        <td><?= $row['nome'] ?></td>
         <td><?= $row['categoria'] ?></td>
         <td><?= $row['prezzo'] ?></td>
         <td><?= $row['garanzia']==1?'Si':'No' ?></td>

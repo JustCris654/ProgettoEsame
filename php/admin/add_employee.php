@@ -45,7 +45,7 @@ function getIDRuolo(mysqli $conn, string $ruolo): int {
     return $result->num_rows == 1 ? $result->fetch_row()[0] : -1;
 }
 
-if (isset($_POST['submit']) and $_SESSION['user_type'] == 'employee') {
+if (isset($_POST['submit']) and $_SESSION['user_type'] == 'employee' and $_SESSION['role'] == 'manager') {
     $conn = connect_db('root', '', 'db_catena_negozi');
     $codice_fiscale = $_POST['codice_fiscale'];
     $nome = $_POST['nome'];
@@ -88,6 +88,7 @@ if (isset($_POST['submit']) and $_SESSION['user_type'] == 'employee') {
         }
         if ($stmt->execute()) {
             echo "Dipendenti aggiunto con successo";
+            echo "<a href='register_employee.php'>Torna alla pagina di registrazione nuovi dipendenti</a>";
         }
     } else {
         echo "<p>Alcuni dati sono sbagliati, ricontrolla</p>";

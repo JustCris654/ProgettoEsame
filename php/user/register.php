@@ -1,11 +1,11 @@
 <?php
 session_start();
 require '../connection_db.php';
-$conn = connect_db("root", "", "db_catena_negozi_2");
+$conn = connect_db("root", "", "db_catena_negozi");
 
 if (isset($_REQUEST['submit'])) {
     //insert con prepared statement
-    $stmt = $conn->prepare("INSERT INTO db_catena_negozi_2.utente (nome, cognome, email, password) 
+    $stmt = $conn->prepare("INSERT INTO db_catena_negozi.utenti (nome, cognome, email, password) 
                                 VALUES (?,?,?,?)");
     $stmt->bind_param("ssss", $name, $surname, $email, $psw_hash);    //s = string
 
