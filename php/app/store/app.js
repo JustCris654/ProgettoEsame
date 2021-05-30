@@ -34,8 +34,14 @@ Vue.component('card-article', {
 
       <div style="position: fixed; width: 100%; height: 100%; z-index: 100; top: 0; left: 0" v-if="showdetails"
            @click="handleClick" ref="detailsMask">
-        <div class="details" v-html="prodname"
-             style="background-color: red; margin: 3rem; top: 0; left: 0">
+        <div class="details"
+             v-html="'<h3>Nome prodotto: '+ prodname+'</h3>'+'<p>'+description+'</p>'+'<p>Costo:'+price+'</p>'"
+             style="background-color: white;   
+             width: 60%; height: 60%;
+             position: absolute; top:0; 
+             bottom: 0; left: 0; right: 0; 
+             margin: auto; border-radius: 25px;
+             border: 5px solid #4381e5;">
         </div>
       </div>
 
@@ -51,7 +57,8 @@ Vue.component('card-article', {
     props: {
         prodname: String,
         price: Number,
-        imglink: String
+        imglink: String,
+        description: String
     },
     //definisco i metodi
     methods: {

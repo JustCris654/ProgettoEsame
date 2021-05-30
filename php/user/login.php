@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../connection_db.php';
-$conn = connect_db("root", "", "db_catena_negozi_2");
+$conn = connect_db("root", "", "db_catena_negozi");
 
 //il server in una ipotetica implementazione reale deve controllare
 //che il codice inserito sia congruente a un codice creato dal badge
@@ -16,7 +16,7 @@ if (isset($_REQUEST['submit'])) {
     $userType = "";
     if ($_POST['user_type'] == 'user') {
         //select con prepared statement per la sicurezza
-        $stmt = $conn->prepare("SELECT nome, cognome, password FROM db_catena_negozi_2.utente where email=?");
+        $stmt = $conn->prepare("SELECT nome, cognome, password FROM db_catena_negozi.utenti where email=?");
         $userType = 'user';
     } elseif ($_POST['user_type'] == 'employee' and checkBadge()) {    //controllo se ad accedere e' un dipendente
         //il controllo sul badge e' inutile ma in una ipotetica implementazione reale del progetto
@@ -25,7 +25,7 @@ if (isset($_REQUEST['submit'])) {
         //se e' giusto procede al login
 
         //select con prepared statement
-        $stmt = $conn->prepare("SELECT nome, cognome, password, ruolo FROM db_catena_negozi_2.dipendente join db_catena_negozi_2.ruolo R on R.id = dipendente.id_ruolo where email=?");
+        $stmt = $conn->prepare("SELECT nome, cognome, password, ruolo FROM db_catena_negozi.dipendenti join db_catena_negozi.ruoli R on R.id = dipendenti.id_ruolo where email=?");
         $userType = 'employee';
     }
     $stmt->bind_param("s", $email);    //s = string

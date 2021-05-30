@@ -1,10 +1,6 @@
 <?php
 session_start();
-$user_auth = "";
-if (isset($_SESSION['name']) and isset($_SESSION['surname'])) {
-    $user_auth = $_SESSION['name'] . " " . $_SESSION['surname'];
 
-}
 if ($_SESSION['user_type'] != 'employee') {
     header('Location: /app/homepage.php');
 } ?>
@@ -102,24 +98,34 @@ if ($_SESSION['user_type'] != 'employee') {
                 <img class="mb-12 login-img" id="img" src="../svg/user-solid.svg" alt=""/>
             </div>
 
-            <div class="form-floating col-md-6">
+            <div class="form-floating col-md-12">
                 <input type="text"
                        class="form-control"
-                       name="name"
-                       id="name"
-                       placeholder="nome"
+                       name="codice_fiscale"
+                       id="codice_fiscale"
+                       placeholder="Codice fiscale"
                        required>
-                <label for="name">Nome</label>
+                <label for="codice_fiscale">Codice fiscale</label>
             </div>
 
             <div class="form-floating col-md-6">
                 <input type="text"
                        class="form-control"
-                       name="surname"
-                       id="surname"
+                       name="nome"
+                       id="nome"
+                       placeholder="nome"
+                       required>
+                <label for="nome">Nome</label>
+            </div>
+
+            <div class="form-floating col-md-6">
+                <input type="text"
+                       class="form-control"
+                       name="cognome"
+                       id="cognome"
                        placeholder="cognome"
                        required>
-                <label for="surname">Cognome</label>
+                <label for="cognome">Cognome</label>
             </div>
 
             <div class="form-floating col-12">
@@ -179,6 +185,16 @@ if ($_SESSION['user_type'] != 'employee') {
             <option value="Scegli">Secgli un comune</option>
         </select>
 
+        <div class="form-floating col-12">
+            <input type="number"
+                   class="form-control"
+                   id="stipendio"
+                   name="stipendio"
+                   placeholder="Stipendio"
+                   required>
+            <label for="stipendio">Stipendio</label>
+        </div>
+
         <div class="form-floating col-md-12">
             <input type="text"
                    class="form-control"
@@ -228,6 +244,19 @@ if ($_SESSION['user_type'] != 'employee') {
         crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+    function form_validate(){
+        let psw1 = document.forms['registerForm']['password_1'].value;
+        let psw2 = document.forms['registerForm']['password_2'].value;
+        console.log(psw1, psw2)
+        if (psw1 === psw2) {
+            return true;
+        } else {
+            alert('Le password devono coincidere');
+            return false;
+        }
+    }
+
     $(document).ready(function () {
         $('#regione').load('localizzazione/elencoRegioni.php');
     });

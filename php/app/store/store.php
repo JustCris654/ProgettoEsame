@@ -169,6 +169,7 @@ function headerUser () {
                                         :prodname="item.product_name"
                                         :price="item.price"
                                         :imglink="item.linkImage"
+                                        :description="item.description"
                                         :key="item.product_name"
                                 >
                                 </card-article>
