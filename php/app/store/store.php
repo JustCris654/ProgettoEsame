@@ -85,6 +85,11 @@ function headerUser () {
                                 >
                             </li>
                             <li>
+                                <a href="/admin/list_articles.php" class="nav-link px-2 text-white"
+                                >Vedi articoli presenti in lista</a
+                                >
+                            </li>
+                            <li>
                                 <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
                                 >Vedi articoli presenti in lista</a
                                 >
