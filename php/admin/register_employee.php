@@ -16,7 +16,7 @@ if ($_SESSION['user_type'] != 'employee') {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
               crossorigin="anonymous">
-        <link rel="stylesheet" href="/style/loign_register_style.css">
+        <link rel="stylesheet" href="/style/login_register_style.css">
         <title>Homepage</title>
     </head>
     <body class="text-center">
@@ -92,8 +92,7 @@ if ($_SESSION['user_type'] != 'employee') {
             </div>
         </div>
     </header>
-
-    <div class="form">
+    <main class="form-signin">
         <form action="add_employee.php" method="POST" name="registerForm" onsubmit="return form_validate()">
 
             <div class="row g-3">
@@ -240,7 +239,7 @@ if ($_SESSION['user_type'] != 'employee') {
 
             <p class="mt-5 mb-3 text-muted">&copy; 2021-today</p>
         </form>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"

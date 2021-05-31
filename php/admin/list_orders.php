@@ -97,9 +97,9 @@ $sql = "SELECT O.id,
        O.id_negozio,
        O.id_utente,
        U.email,
-       A.nome,
-       m.nome,
-       c.nome,
+       A.nome as nome,
+       m.nome as marca,
+       c.nome as categoria,
        A.prezzo,
        O.garanzia,
        O.data
@@ -139,7 +139,7 @@ if ($result->num_rows > 0) {
         <td><?= $row['id_utente'] ?></td>
         <td><?= $row['email'] ?></td>
         <td><?= $row['nome'] ?></td>
-        <td><?= $row['nome'] ?></td>
+        <td><?= $row['marca'] ?></td>
         <td><?= $row['categoria'] ?></td>
         <td><?= $row['prezzo'] ?></td>
         <td><?= $row['garanzia']==1?'Si':'No' ?></td>
