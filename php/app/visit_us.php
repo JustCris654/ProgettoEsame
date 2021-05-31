@@ -1,5 +1,7 @@
 <?php
 session_start();
+require '../connection_db.php';
+$conn = connect_db('root', '', 'db_catena_negozi');
 ?>
 <html lang="en">
 <head>
@@ -48,32 +50,32 @@ session_start();
             <?php
             if (isset($_SESSION['name'])) { ?>
 
-            <div class="text-end">
-                <a href="/user/areapersonale.php" style="text-decoration: none">
-                    <button type="button" class="btn btn-primary">
-                        Area personale <?= $_SESSION['name'] ?> <br>
-                    </button>
-                </a>
-            </div>
+                <div class="text-end">
+                    <a href="/user/areapersonale.php" style="text-decoration: none">
+                        <button type="button" class="btn btn-primary">
+                            Area personale <?= $_SESSION['name'] ?> <br>
+                        </button>
+                    </a>
+                </div>
 
 
-            <?php
+                <?php
             } else { ?>
-            <div class="text-end">
-                <a href="/user/login.html" style="text-decoration: none">
-                    <button
-                            type="button"
-                            class="btn btn-outline-primary me-2"
-                    >
-                        Login
-                    </button>
-                </a>
-                <a href="/user/register.html" style="text-decoration: none">
-                    <button type="button" class="btn btn-primary">
-                        Sign-up
-                    </button>
-                </a>
-            </div> <?php
+                <div class="text-end">
+                    <a href="/user/login.html" style="text-decoration: none">
+                        <button
+                                type="button"
+                                class="btn btn-outline-primary me-2"
+                        >
+                            Login
+                        </button>
+                    </a>
+                    <a href="/user/register.html" style="text-decoration: none">
+                        <button type="button" class="btn btn-primary">
+                            Sign-up
+                        </button>
+                    </a>
+                </div> <?php
             }
             ?>
         </div>
@@ -86,14 +88,21 @@ session_start();
 <p>
     Ci troverai:
 </p>
-<p>
-    * in Via Carmelo 27
-</p>
-<p>
-    * in Via Cicala Lamatta 49
-</p>
-<p>
-    * in Via Scarmuggi 178
-</p>
+<?php
+$sql = "SELECT n.indirizzo, c.nome FROM db_catena_negozi.negozi n
+join db_catena_negozi.comuni c on c.id = n.id_comune";
+$result = $conn->query($sql);
+
+if($result->num_rows>0){
+    while($row = $result->fetch_row()){
+        ?>
+        <p>
+            * <?= $row[0]." ".$row[1] ?>
+        </p>
+<?php
+    }
+}
+
+?>
 </body>
 </html>
