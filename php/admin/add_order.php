@@ -26,12 +26,12 @@ if($_SESSION['user_type'] != 'employee'){
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
 
 
             <ul
-                class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                    class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
                 <li>
                     <a href="/admin/homepage_admin.php" class="nav-link px-2 text-secondary"
@@ -49,8 +49,13 @@ if($_SESSION['user_type'] != 'employee'){
                     >
                 </li>
                 <li>
-                    <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                    <a href="/admin/list_articles.php" class="nav-link px-2 text-white"
                     >Vedi articoli presenti in lista</a
+                    >
+                </li>
+                <li>
+                    <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                    >Vedi ordini in lista</a
                     >
                 </li>
 
@@ -62,7 +67,6 @@ if($_SESSION['user_type'] != 'employee'){
             </ul>
 
             <?php
-            //se un utente e' loggato mostra il link all'area personale senno due link per registrarsi o loggarsi
             if (isset($_SESSION['name'])) { ?>
 
                 <div class="text-end">
@@ -79,8 +83,8 @@ if($_SESSION['user_type'] != 'employee'){
                 <div class="text-end">
                     <a href="/user/login.html" style="text-decoration: none">
                         <button
-                            type="button"
-                            class="btn btn-outline-primary me-2"
+                                type="button"
+                                class="btn btn-outline-primary me-2"
                         >
                             Login
                         </button>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../connection_db.php';
-if($_SESSION['user_type'] != 'employee'){
+if ($_SESSION['user_type'] != 'employee') {
     header('Location: /app/homepage.php');
 }
 $conn = connect_db('root', '', 'db_catena_negozi');
@@ -44,8 +44,13 @@ $conn = connect_db('root', '', 'db_catena_negozi');
                     >
                 </li>
                 <li>
-                    <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                    <a href="/admin/list_articles.php" class="nav-link px-2 text-white"
                     >Vedi articoli presenti in lista</a
+                    >
+                </li>
+                <li>
+                    <a href="/admin/list_orders.php" class="nav-link px-2 text-white"
+                    >Vedi ordini in lista</a
                     >
                 </li>
 
@@ -97,9 +102,9 @@ $sql = "SELECT O.id,
        O.id_negozio,
        O.id_utente,
        U.email,
-       A.nome,
-       m.nome,
-       c.nome,
+       A.nome as nome,
+       m.nome as marca,
+       c.nome as categoria,
        A.prezzo,
        O.garanzia,
        O.data
@@ -134,17 +139,19 @@ if ($result->num_rows > 0) {
     <?php
     while ($row = $result->fetch_assoc()) {
         ?>
-        <th scope="row"><?= $row['id'] ?></th>
-        <td><?= $row['id_negozio'] ?></td>
-        <td><?= $row['id_utente'] ?></td>
-        <td><?= $row['email'] ?></td>
-        <td><?= $row['nome'] ?></td>
-        <td><?= $row['nome'] ?></td>
-        <td><?= $row['categoria'] ?></td>
-        <td><?= $row['prezzo'] ?></td>
-        <td><?= $row['garanzia']==1?'Si':'No' ?></td>
-        <td><?= $row['data'] ?></td>
-    <?php
+        <tr>
+            <th scope="row"><?= $row['id'] ?></th>
+            <td><?= $row['id_negozio'] ?></td>
+            <td><?= $row['id_utente'] ?></td>
+            <td><?= $row['email'] ?></td>
+            <td><?= $row['nome'] ?></td>
+            <td><?= $row['marca'] ?></td>
+            <td><?= $row['categoria'] ?></td>
+            <td><?= $row['prezzo'] ?></td>
+            <td><?= $row['garanzia'] == 1 ? 'Si' : 'No' ?></td>
+            <td><?= $row['data'] ?></td>
+        </tr>
+        <?php
     }
     } else {
         echo "0 results";

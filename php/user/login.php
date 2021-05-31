@@ -60,6 +60,6 @@ if (isset($_REQUEST['submit'])) {
 
 }
 $conn->close();
-header("Location: login.html?msg=error");   //in caso di errore manda alla pagina di errore generico (da cambiare)
+header("Location: login.html?msg=error");
 exit();
 

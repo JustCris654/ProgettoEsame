@@ -3,6 +3,11 @@ session_start();
 require '../connection_db.php';
 $conn = connect_db("root", "", "db_catena_negozi");
 
+function exitWIthError(){
+    header("Location: register.html?msg=error");
+    exit();
+}
+
 if (isset($_REQUEST['submit'])) {
     //insert con prepared statement
     $stmt = $conn->prepare("INSERT INTO db_catena_negozi.utenti (nome, cognome, email, password) 
@@ -24,9 +29,8 @@ if (isset($_REQUEST['submit'])) {
     } else {
         echo "Error: ".$stmt->error;
 
-        header("Location: ../generic_error.html");
+        exitWIthError();
     }
 } else {
-    header("Location: register.html");
-    exit();
+    exitWIthError();
 }
