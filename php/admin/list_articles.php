@@ -111,7 +111,7 @@ FROM db_catena_negozi.articoli a
          JOIN db_catena_negozi.marche m on m.id = a.id_marca
          JOIN db_catena_negozi.negozi n on i.id_negozio = n.id
          JOIN db_catena_negozi.comuni c2 on n.id_comune = c2.id
-ORDER BY (id_negozio)";
+ORDER BY (indirizzo)";
 
 $result = $conn->query($sql);
 
